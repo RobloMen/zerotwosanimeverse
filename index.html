@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zerotwo's AnimeVerse</title>
+    <link rel="icon" type="image/png" href="fav.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #f8e71c 50%, #7ed6df 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Auth Styles */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .auth-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff6b6b, #e056fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-tab.active {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #e056fd);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Main App Styles */
+        .app-container {
+            display: none;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #e056fd);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            padding: 8px 15px;
+            background: #ff6b6b;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+        }
+
+        .generator-panel {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .prompt-input {
+            width: 100%;
+            min-height: 100px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #e056fd);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .style-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .style-option {
+            padding: 10px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .style-option.active {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .feed-panel {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feed-title {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .art-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .art-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .art-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .art-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .art-info {
+            padding: 10px;
+        }
+
+        .art-prompt {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .art-author {
+            font-size: 11px;
+            color: #999;
+        }
+
+        .generation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f0f0f0;
+            border-top: 5px solid #ff6b6b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Auth Section -->
+    <div class="auth-container" id="authContainer">
+        <div class="auth-box">
+            <div class="logo">Zerotwo's AnimeVerse</div>
+            <div class="tagline">Создавай и делись аниме-артами</div>
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" onclick="showTab('login')">Вход</div>
+                <div class="auth-tab" onclick="showTab('register')">Регистрация</div>
+            </div>
+
+            <form class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <label>Имя пользователя</label>
+                    <input type="text" class="form-input" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" class="form-input" id="loginPassword" required>
+                </div>
+                <button type="submit" class="auth-btn">Войти</button>
+            </form>
+
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label>Имя пользователя</label>
+                    <input type="text" class="form-input" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-input" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" class="form-input" id="registerPassword" required>
+                </div>
+                <button type="submit" class="auth-btn">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="app-container" id="appContainer">
+        <div class="container">
+            <div class="header">
+                <div class="logo">Zerotwo's AnimeVerse</div>
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span id="userName">Пользователь</span>
+                    <button class="logout-btn" onclick="logout()">Выйти</button>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="generator-panel">
+                    <h3>Создать арт</h3>
+                    <textarea class="prompt-input" id="promptInput" placeholder="Опиши своего аниме-персонажа..."></textarea>
+                    
+                    <div class="style-options">
+                        <button class="style-option active" data-style="anime">Аниме</button>
+                        <button class="style-option" data-style="manga">Манга</button>
+                        <button class="style-option" data-style="cute">Кавайи</button>
+                        <button class="style-option" data-style="cool">Крутой</button>
+                    </div>
+                    
+                    <button class="generate-btn" onclick="generateArt()">🎨 Создать арт</button>
+                </div>
+
+                <div class="feed-panel">
+                    <h3 class="feed-title">Лента сообщества</h3>
+                    <div class="art-grid" id="artGrid">
+                        <!-- Арты будут добавляться здесь -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generation Modal -->
+    <div class="generation-modal" id="generationModal">
+        <div class="modal-content">
+            <div class="loading-spinner"></div>
+            <h3>Создаём твой арт...</h3>
+            <p>Это займет несколько секунд</p>
+        </div>
+    </div>
+
+    <script>
+        // User management
+        let currentUser = null;
+        let allArts = JSON.parse(localStorage.getItem('animeverse_arts')) || [];
+
+        // Auth functions
+        function showTab(tabName) {
+            document.querySelectorAll('.auth-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+            
+            document.querySelector(`.auth-tab[onclick="showTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(tabName + 'Form').classList.add('active');
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const users = JSON.parse(localStorage.getItem('animeverse_users')) || [];
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                login(user);
+            } else {
+                alert('Неверное имя пользователя или пароль');
+            }
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            
+            const users = JSON.parse(localStorage.getItem('animeverse_users')) || [];
+            
+            if (users.find(u => u.username === username)) {
+                alert('Имя пользователя уже занято');
+                return;
+            }
+            
+            const newUser = { username, email, password, joinDate: new Date().toISOString() };
+            users.push(newUser);
+            localStorage.setItem('animeverse_users', JSON.stringify(users));
+            
+            login(newUser);
+        });
+
+        function login(user) {
+            currentUser = user;
+            document.getElementById('authContainer').style.display = 'none';
+            document.getElementById('appContainer').style.display = 'block';
+            document.getElementById('userName').textContent = user.username;
+            document.getElementById('userAvatar').textContent = user.username.charAt(0).toUpperCase();
+            loadFeed();
+        }
+
+        function logout() {
+            currentUser = null;
+            document.getElementById('appContainer').style.display = 'none';
+            document.getElementById('authContainer').style.display = 'flex';
+        }
+
+        // Art generation
+        function generateArt() {
+            const prompt = document.getElementById('promptInput').value.trim();
+            if (!prompt) {
+                alert('Введите описание для генерации');
+                return;
+            }
+
+            const style = document.querySelector('.style-option.active').dataset.style;
+            
+            // Show loading modal
+            document.getElementById('generationModal').style.display = 'flex';
+            
+            // Simulate generation (in real app, this would be API call)
+            setTimeout(() => {
+                const newArt = {
+                    id: Date.now(),
+                    prompt: prompt,
+                    style: style,
+                    author: currentUser.username,
+                    timestamp: new Date().toISOString(),
+                    imageUrl: generateDemoImage(prompt, style)
+                };
+                
+                allArts.unshift(newArt);
+                localStorage.setItem('animeverse_arts', JSON.stringify(allArts));
+                
+                document.getElementById('generationModal').style.display = 'none';
+                document.getElementById('promptInput').value = '';
+                loadFeed();
+                
+                // Open in new tab
+                window.open(newArt.imageUrl, '_blank');
+                
+            }, 3000);
+        }
+
+        function generateDemoImage(prompt, style) {
+            // Demo images from Unsplash (in real app, these would be AI-generated)
+            const demoImages = {
+                anime: 'https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=400&h=400&fit=crop',
+                manga: 'https://images.unsplash.com/photo-1578632749014-ca77efd052eb?w=400&h=400&fit=crop',
+                cute: 'https://images.unsplash.com/photo-1569701813229-33284b643e3c?w=400&h=400&fit=crop',
+                cool: 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?w=400&h=400&fit=crop'
+            };
+            
+            return `${demoImages[style]}&text=${encodeURIComponent(prompt)}&t=${Date.now()}`;
+        }
+
+        function loadFeed() {
+            const artGrid = document.getElementById('artGrid');
+            artGrid.innerHTML = '';
+            
+            allArts.forEach(art => {
+                const artCard = document.createElement('div');
+                artCard.className = 'art-card';
+                artCard.innerHTML = `
+                    <img src="${art.imageUrl}" alt="${art.prompt}" class="art-image">
+                    <div class="art-info">
+                        <div class="art-prompt">${art.prompt}</div>
+                        <div class="art-author">@${art.author}</div>
+                    </div>
+                `;
+                artGrid.appendChild(artCard);
+            });
+        }
+
+        // Style selection
+        document.querySelectorAll('.style-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.style-option').forEach(opt => opt.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Check if user is already logged in
+        window.addEventListener('load', function() {
+            const lastUser = localStorage.getItem('animeverse_last_user');
+            if (lastUser) {
+                const users = JSON.parse(localStorage.getItem('animeverse_users')) || [];
+                const user = users.find(u => u.username === lastUser);
+                if (user) {
+                    login(user);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
