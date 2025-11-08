@@ -14,9 +14,9 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ff6b6b 0%, #f8e71c 50%, #7ed6df 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
             min-height: 100vh;
-            color: #333;
+            color: #ffffff;
         }
 
         .container {
@@ -34,25 +34,26 @@
         }
 
         .auth-box {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(40, 40, 40, 0.95);
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             width: 100%;
             max-width: 400px;
             text-align: center;
+            border: 1px solid #333;
         }
 
         .logo {
             font-size: 2.5em;
             margin-bottom: 10px;
-            background: linear-gradient(45deg, #ff6b6b, #e056fd);
+            background: linear-gradient(45deg, #fff, #888);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .tagline {
-            color: #666;
+            color: #aaa;
             margin-bottom: 30px;
         }
 
@@ -61,7 +62,7 @@
             margin-bottom: 20px;
             border-radius: 10px;
             overflow: hidden;
-            background: #f0f0f0;
+            background: #2a2a2a;
         }
 
         .auth-tab {
@@ -69,10 +70,11 @@
             padding: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
+            color: #ccc;
         }
 
         .auth-tab.active {
-            background: #ff6b6b;
+            background: linear-gradient(45deg, #444, #666);
             color: white;
         }
 
@@ -92,38 +94,40 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #666;
+            color: #aaa;
         }
 
         .form-input {
             width: 100%;
             padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            background: #2a2a2a;
+            border: 2px solid #444;
+            border-radius: 8px;
             font-size: 16px;
+            color: white;
             transition: border-color 0.3s ease;
         }
 
         .form-input:focus {
             outline: none;
-            border-color: #ff6b6b;
+            border-color: #888;
         }
 
         .auth-btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(45deg, #ff6b6b, #e056fd);
+            background: linear-gradient(45deg, #444, #666);
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             color: white;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .auth-btn:hover {
-            transform: translateY(-2px);
+            background: linear-gradient(45deg, #555, #777);
         }
 
         /* Main App Styles */
@@ -132,14 +136,35 @@
         }
 
         .header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(40, 40, 40, 0.95);
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            background: #2a2a2a;
+            border: none;
+            border-radius: 8px;
+            color: #ccc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(45deg, #444, #666);
+            color: white;
         }
 
         .user-info {
@@ -152,7 +177,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: linear-gradient(45deg, #ff6b6b, #e056fd);
+            background: linear-gradient(45deg, #444, #666);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -162,121 +187,155 @@
 
         .logout-btn {
             padding: 8px 15px;
-            background: #ff6b6b;
+            background: #444;
             border: none;
             border-radius: 8px;
             color: white;
             cursor: pointer;
+            transition: background 0.3s ease;
         }
 
-        .main-content {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 20px;
+        .logout-btn:hover {
+            background: #555;
         }
 
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Generator Tab */
         .generator-panel {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
+            background: rgba(40, 40, 40, 0.95);
+            padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
         }
 
         .prompt-input {
             width: 100%;
-            min-height: 100px;
+            min-height: 120px;
             padding: 15px;
-            border: 2px solid #e0e0e0;
+            background: #2a2a2a;
+            border: 2px solid #444;
             border-radius: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             resize: vertical;
+            color: white;
+            font-size: 16px;
+        }
+
+        .prompt-input:focus {
+            outline: none;
+            border-color: #888;
+        }
+
+        .style-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .style-option {
+            padding: 15px;
+            background: #2a2a2a;
+            border: 2px solid #444;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #ccc;
+            text-align: center;
+        }
+
+        .style-option.active {
+            background: linear-gradient(45deg, #444, #666);
+            border-color: #888;
+            color: white;
         }
 
         .generate-btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(45deg, #ff6b6b, #e056fd);
+            background: linear-gradient(45deg, #444, #666);
             border: none;
             border-radius: 10px;
             color: white;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: bold;
-            cursor: pointer;
-            margin-bottom: 15px;
-        }
-
-        .style-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .style-option {
-            padding: 10px;
-            background: #f0f0f0;
-            border: none;
-            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .style-option.active {
-            background: #ff6b6b;
-            color: white;
+        .generate-btn:hover {
+            background: linear-gradient(45deg, #555, #777);
         }
 
+        /* Feed Tab */
         .feed-panel {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px;
+            background: rgba(40, 40, 40, 0.95);
+            padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
         }
 
         .feed-title {
             margin-bottom: 20px;
-            color: #333;
+            color: #fff;
+            font-size: 1.5em;
         }
 
         .art-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
 
         .art-card {
-            background: white;
-            border-radius: 10px;
+            background: #2a2a2a;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
+            border: 1px solid #333;
+            cursor: pointer;
         }
 
         .art-card:hover {
             transform: translateY(-5px);
+            border-color: #666;
         }
 
         .art-image {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
+            border-bottom: 1px solid #333;
         }
 
         .art-info {
-            padding: 10px;
+            padding: 15px;
         }
 
         .art-prompt {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 5px;
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 8px;
+            line-height: 1.4;
         }
 
         .art-author {
-            font-size: 11px;
-            color: #999;
+            font-size: 12px;
+            color: #888;
         }
 
+        /* Generation Modal */
         .generation-modal {
             display: none;
             position: fixed;
@@ -284,26 +343,27 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
 
         .modal-content {
-            background: white;
-            padding: 30px;
+            background: #2a2a2a;
+            padding: 40px;
             border-radius: 15px;
             text-align: center;
             max-width: 400px;
             width: 90%;
+            border: 1px solid #444;
         }
 
         .loading-spinner {
             width: 50px;
             height: 50px;
-            border: 5px solid #f0f0f0;
-            border-top: 5px solid #ff6b6b;
+            border: 5px solid #444;
+            border-top: 5px solid #888;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px;
@@ -313,6 +373,56 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* View Tab */
+        .viewer-panel {
+            background: rgba(40, 40, 40, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        .viewer-image {
+            max-width: 100%;
+            max-height: 70vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .viewer-info {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+
+        .viewer-prompt {
+            font-size: 18px;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .viewer-author {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .back-btn {
+            padding: 10px 20px;
+            background: #444;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .back-btn:hover {
+            background: #555;
+        }
     </style>
 </head>
 <body>
@@ -320,11 +430,11 @@
     <div class="auth-container" id="authContainer">
         <div class="auth-box">
             <div class="logo">Zerotwo's AnimeVerse</div>
-            <div class="tagline">Создавай и делись аниме-артами</div>
+            <div class="tagline">Тёмное искусство аниме</div>
             
             <div class="auth-tabs">
-                <div class="auth-tab active" onclick="showTab('login')">Вход</div>
-                <div class="auth-tab" onclick="showTab('register')">Регистрация</div>
+                <div class="auth-tab active" onclick="showAuthTab('login')">Вход</div>
+                <div class="auth-tab" onclick="showAuthTab('register')">Регистрация</div>
             </div>
 
             <form class="auth-form active" id="loginForm">
@@ -336,7 +446,7 @@
                     <label>Пароль</label>
                     <input type="password" class="form-input" id="loginPassword" required>
                 </div>
-                <button type="submit" class="auth-btn">Войти</button>
+                <button type="submit" class="auth-btn">Войти в Тьму</button>
             </form>
 
             <form class="auth-form" id="registerForm">
@@ -352,7 +462,7 @@
                     <label>Пароль</label>
                     <input type="password" class="form-input" id="registerPassword" required>
                 </div>
-                <button type="submit" class="auth-btn">Зарегистрироваться</button>
+                <button type="submit" class="auth-btn">Присоединиться</button>
             </form>
         </div>
     </div>
@@ -362,6 +472,11 @@
         <div class="container">
             <div class="header">
                 <div class="logo">Zerotwo's AnimeVerse</div>
+                <div class="nav-tabs">
+                    <button class="nav-tab active" onclick="showTab('generator')">Создать</button>
+                    <button class="nav-tab" onclick="showTab('feed')">Лента</button>
+                    <button class="nav-tab" onclick="showTab('view')" id="viewTab" style="display:none">Просмотр</button>
+                </div>
                 <div class="user-info">
                     <div class="user-avatar" id="userAvatar">U</div>
                     <span id="userName">Пользователь</span>
@@ -369,26 +484,42 @@
                 </div>
             </div>
 
-            <div class="main-content">
+            <!-- Generator Tab -->
+            <div class="tab-content active" id="generatorTab">
                 <div class="generator-panel">
-                    <h3>Создать арт</h3>
-                    <textarea class="prompt-input" id="promptInput" placeholder="Опиши своего аниме-персонажа..."></textarea>
+                    <h3 style="margin-bottom: 20px; color: #fff;">Создать тёмный арт</h3>
+                    <textarea class="prompt-input" id="promptInput" placeholder="Опиши своего аниме-персонажа в тёмном стиле..."></textarea>
                     
                     <div class="style-options">
-                        <button class="style-option active" data-style="anime">Аниме</button>
-                        <button class="style-option" data-style="manga">Манга</button>
-                        <button class="style-option" data-style="cute">Кавайи</button>
-                        <button class="style-option" data-style="cool">Крутой</button>
+                        <button class="style-option active" data-style="dark">Тёмный</button>
+                        <button class="style-option" data-style="gothic">Готика</button>
+                        <button class="style-option" data-style="cyber">Киберпанк</button>
+                        <button class="style-option" data-style="vampire">Вампир</button>
                     </div>
                     
-                    <button class="generate-btn" onclick="generateArt()">🎨 Создать арт</button>
+                    <button class="generate-btn" onclick="generateArt()">🎨 Создать в Тьме</button>
                 </div>
+            </div>
 
+            <!-- Feed Tab -->
+            <div class="tab-content" id="feedTab">
                 <div class="feed-panel">
-                    <h3 class="feed-title">Лента сообщества</h3>
+                    <h3 class="feed-title">Тёмная Лента</h3>
                     <div class="art-grid" id="artGrid">
                         <!-- Арты будут добавляться здесь -->
                     </div>
+                </div>
+            </div>
+
+            <!-- View Tab -->
+            <div class="tab-content" id="viewTab">
+                <div class="viewer-panel">
+                    <img id="viewerImage" class="viewer-image" src="" alt="">
+                    <div class="viewer-info">
+                        <div class="viewer-prompt" id="viewerPrompt"></div>
+                        <div class="viewer-author" id="viewerAuthor"></div>
+                    </div>
+                    <button class="back-btn" onclick="showTab('feed')">← Назад к ленте</button>
                 </div>
             </div>
         </div>
@@ -398,8 +529,8 @@
     <div class="generation-modal" id="generationModal">
         <div class="modal-content">
             <div class="loading-spinner"></div>
-            <h3>Создаём твой арт...</h3>
-            <p>Это займет несколько секунд</p>
+            <h3 style="color: #fff; margin-bottom: 10px;">Создаём твой тёмный арт...</h3>
+            <p style="color: #aaa;">Погружаемся в пучину творчества</p>
         </div>
     </div>
 
@@ -407,13 +538,14 @@
         // User management
         let currentUser = null;
         let allArts = JSON.parse(localStorage.getItem('animeverse_arts')) || [];
+        let currentViewingArt = null;
 
         // Auth functions
-        function showTab(tabName) {
+        function showAuthTab(tabName) {
             document.querySelectorAll('.auth-tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
             
-            document.querySelector(`.auth-tab[onclick="showTab('${tabName}')"]`).classList.add('active');
+            document.querySelector(`.auth-tab[onclick="showAuthTab('${tabName}')"]`).classList.add('active');
             document.getElementById(tabName + 'Form').classList.add('active');
         }
 
@@ -467,6 +599,15 @@
             document.getElementById('authContainer').style.display = 'flex';
         }
 
+        // Tab navigation
+        function showTab(tabName) {
+            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            document.querySelector(`.nav-tab[onclick="showTab('${tabName}')"]`).classList.add('active');
+            document.getElementById(tabName + 'Tab').classList.add('active');
+        }
+
         // Art generation
         function generateArt() {
             const prompt = document.getElementById('promptInput').value.trim();
@@ -480,7 +621,7 @@
             // Show loading modal
             document.getElementById('generationModal').style.display = 'flex';
             
-            // Simulate generation (in real app, this would be API call)
+            // Simulate generation
             setTimeout(() => {
                 const newArt = {
                     id: Date.now(),
@@ -498,22 +639,22 @@
                 document.getElementById('promptInput').value = '';
                 loadFeed();
                 
-                // Open in new tab
-                window.open(newArt.imageUrl, '_blank');
+                // Switch to view tab
+                viewArt(newArt);
                 
-            }, 3000);
+            }, 2000);
         }
 
         function generateDemoImage(prompt, style) {
-            // Demo images from Unsplash (in real app, these would be AI-generated)
+            // Demo images with dark theme
             const demoImages = {
-                anime: 'https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=400&h=400&fit=crop',
-                manga: 'https://images.unsplash.com/photo-1578632749014-ca77efd052eb?w=400&h=400&fit=crop',
-                cute: 'https://images.unsplash.com/photo-1569701813229-33284b643e3c?w=400&h=400&fit=crop',
-                cool: 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?w=400&h=400&fit=crop'
+                dark: 'https://images.unsplash.com/photo-1579546929662-711aa81148cf?w=400&h=400&fit=crop',
+                gothic: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=400&fit=crop',
+                cyber: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=400&fit=crop',
+                vampire: 'https://images.unsplash.com/photo-1505506874110-6a7a69069a08?w=400&h=400&fit=crop'
             };
             
-            return `${demoImages[style]}&text=${encodeURIComponent(prompt)}&t=${Date.now()}`;
+            return `${demoImages[style]}?auto=format&fit=crop&w=600&h=600&q=80&t=${Date.now()}`;
         }
 
         function loadFeed() {
@@ -523,15 +664,27 @@
             allArts.forEach(art => {
                 const artCard = document.createElement('div');
                 artCard.className = 'art-card';
+                artCard.onclick = () => viewArt(art);
                 artCard.innerHTML = `
                     <img src="${art.imageUrl}" alt="${art.prompt}" class="art-image">
                     <div class="art-info">
                         <div class="art-prompt">${art.prompt}</div>
-                        <div class="art-author">@${art.author}</div>
+                        <div class="art-author">@${art.author} • ${art.style}</div>
                     </div>
                 `;
                 artGrid.appendChild(artCard);
             });
+        }
+
+        function viewArt(art) {
+            currentViewingArt = art;
+            document.getElementById('viewerImage').src = art.imageUrl;
+            document.getElementById('viewerPrompt').textContent = art.prompt;
+            document.getElementById('viewerAuthor').textContent = `@${art.author} • ${art.style} • ${new Date(art.timestamp).toLocaleDateString()}`;
+            
+            // Show view tab
+            document.getElementById('viewTab').style.display = 'block';
+            showTab('view');
         }
 
         // Style selection
@@ -551,6 +704,11 @@
                 if (user) {
                     login(user);
                 }
+            }
+            
+            // Save last user on login
+            if (currentUser) {
+                localStorage.setItem('animeverse_last_user', currentUser.username);
             }
         });
     </script>
